@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Form Validations </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>  
+        body{
+            background: #1cbdcf;
+            height: 100vh;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        form{
+            background: #fff;
+            /* border-radius: 10px; */
+            width: 400px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            padding: 20px;
+            height:200px;
+        }
+
+        input{
+            width: 100%;
+            display: block;
+            padding: 10px;
+        }
+
+        h2{
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .input-form{
+            margin: 20px 0;
+        }
+
+        .submit-btn{
+            background: #1581d4;
+            border: none;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .error-messages{
+            color:red;
+            font-size: 12px;
+        }
+        input[type="submit"]:focus{
+            background: #2a99ed;
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <div class="container"> 
+            <form action="" onsubmit="return formValidation()">
+                <h2> Login </h2>
+                <div class="input-form"> 
+                    <input type="text" placeholder="User Name" id="user_name" value="">
+                    <span id="error_messages" class="error-messages"></span>
+                </div>
+                <div class="submit-btn"> 
+                    <input type="submit" value="Submit" class="submit-btn">
+                </div>
+            </form>
+    </div>
+
+
+
+
+
+
+<!-- External library -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<!-- End -->
+
+<script>
+    // User Name conditions 
+    // 1. User name should not be empty 
+    // 1. User name should have min 3 characters 
+    // 3. User name should have max 20 characters
+    // 4. Using regular expressions 
+
+    var letters = /^[A-Za-z]+$/;
+    var username = document.getElementById("user_name");
+
+    function formValidation(){
+        if(username.value == ""){
+                document.getElementById("error_messages").innerHTML = "** Please fill user name";
+        }else if(username.value.length < 3){
+                document.getElementById("error_messages").innerHTML = "** Please enter at least 3 characters";
+        }else if(username.value.length > 20){
+            document.getElementById("error_messages").innerHTML = "** User name must be less than 20 characters";
+        }else if(username.value.match(letters)){
+            console.log("form submitted successfully")
+            return true;
+        }  
+         else{
+            document.getElementById("error_messages").innerHTML = "only alphabets are allowed ";                
+        }      
+        return false;
+       
+
+    }
+
+
+
+</script>
+
+
+</body>
+</html>
